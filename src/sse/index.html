@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>你好我是SSE模板文件</h1>
+  <div class="box">
+
+  </div>
+</body>
+
+</html>
+<script>
+  let source = new EventSource('http://localhost:3000/sse')
+  source.onopen = function () {
+    console.log('链接成功');
+    console.log(source.readyState)
+  }
+  source.onmessage = function (e) {
+    document.querySelector('.box').innerHTML = e.data
+  }
+  source.onerror = function (err) {
+    return console.log(err);
+  }
+</script>

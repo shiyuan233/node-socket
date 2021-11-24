@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  socket页面
+  <div class="box"></div>
+  <button type="submit" onclick="sub()">点我啊</button>
+</body>
+
+</html>
+<script>
+  let ws = new WebSocket('ws://localhost:8181')
+  ws.onopen = function () {
+    console.log('链接成功')
+  }
+  ws.onmessage = function (e) {
+    document.querySelector('.box').innerHTML = e.data
+  }
+  ws.onerror = function (err) {
+    return console.log(err)
+  }
+  function sub (){
+    ws.send('客户端数据')
+  }
+</script>
